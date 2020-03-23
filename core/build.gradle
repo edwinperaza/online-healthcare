@@ -19,7 +19,7 @@ android {
     flavorDimensions "base"
     productFlavors {
         dev {
-            buildConfigField "String", "URL_BASE_API", "\"http://moriahdp.com/\""
+            buildConfigField "String", "URL_BASE_API", "\"https://api.covid19api.com/\""
             dimension "base"
         }
 

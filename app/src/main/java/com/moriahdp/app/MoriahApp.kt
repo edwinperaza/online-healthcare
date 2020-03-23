@@ -8,9 +8,9 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
-const val URL_BASE_EXPERIENCE_API = "BuildConfig.URL_BASE_EXPERIENCE_API"
+const val URL_BASE_COVID_API = "BuildConfig.URL_BASE_API"
 
-open class NotesApp : Application() {
+open class MoriahApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -21,7 +21,7 @@ open class NotesApp : Application() {
     private fun initKoin() {
         startKoin {
             androidLogger(Level.DEBUG)
-            androidContext(this@NotesApp)
+            androidContext(this@MoriahApp)
             modules(
                 listOf(
                     appModule

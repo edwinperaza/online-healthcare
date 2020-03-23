@@ -3,13 +3,15 @@ package com.moriahdp.app.di
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
-import com.moriahdp.app.URL_BASE_EXPERIENCE_API
+import com.moriahdp.app.URL_BASE_COVID_API
 import com.moriahdp.app.util.AppPreferences
 import com.moriahdp.app.data.interceptor.AuthInterceptor
 import com.moriahdp.app.data.interceptor.RefreshAuthTokenInterceptor
+import com.moriahdp.app.data.remote.net.TaskService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,6 +23,8 @@ val appModule = module {
     single {
         androidContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     }
+
+    /* Shared Preferences */
     single<SharedPreferences> {
         androidContext().getSharedPreferences(
             AppPreferences.SHARED_PREFERENCES_NAME,
@@ -28,31 +32,33 @@ val appModule = module {
         )
     }
 
-    val loggin = HttpLoggingInterceptor()
-    loggin.level = HttpLoggingInterceptor.Level.BODY
-
-    /* Retrofit */
+    /* OkHttp */
+    val logging = HttpLoggingInterceptor()
+    logging.level = HttpLoggingInterceptor.Level.BODY
     single {
         OkHttpClient.Builder()
-            //.callTimeout(1, TimeUnit.MINUTES)
+            .callTimeout(1, TimeUnit.MINUTES)
             .connectTimeout(1, TimeUnit.MINUTES)
             .readTimeout(1, TimeUnit.MINUTES)
             .writeTimeout(1, TimeUnit.MINUTES)
 //            .addInterceptor(ChuckInterceptor(androidContext()))
-            //.addInterceptor(AuthInterceptor(AppPreferences))
-            //.addInterceptor(RefreshAuthTokenInterceptor(AppPreferences))
-            .addInterceptor(loggin)
+//            .addInterceptor(AuthInterceptor(AppPreferences))
+//            .addInterceptor(RefreshAuthTokenInterceptor(AppPreferences))
+            .addInterceptor(logging)
             .build()
     }
+
+    /* Retrofit */
     single {
+        named("covid")
         Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl(URL_BASE_COVID_API)
             .client(get())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    //single { get<Retrofit>().create(LoginRemoteApi::class.java) as LoginRemoteApi }
+    single { get<Retrofit>(named("covid")).create(TaskService::class.java) as TaskService }
 
 
     /* Database */
