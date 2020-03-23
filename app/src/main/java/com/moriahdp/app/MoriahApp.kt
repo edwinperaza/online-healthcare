@@ -22,11 +22,7 @@ open class MoriahApp : Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@MoriahApp)
-            modules(
-                listOf(
-                    appModule
-                )
-            )
+            modules(listOf(appModule))
         }
     }
 }

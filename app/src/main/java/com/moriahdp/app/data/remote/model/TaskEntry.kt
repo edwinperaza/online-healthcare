@@ -1,7 +1,15 @@
 package com.moriahdp.app.data.remote.model
 
+import com.moriahdp.app.domain.model.Task
+
 data class TaskEntry(
-  private val id: Long,
-  private val title: String,
-  private val description: String
+  val id: Long,
+  val title: String,
+  val description: String
+)
+
+fun TaskEntry.toTask() = Task(
+  id = id,
+  title = title,
+  description = description
 )

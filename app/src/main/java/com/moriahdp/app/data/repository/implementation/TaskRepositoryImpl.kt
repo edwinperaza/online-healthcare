@@ -1,34 +1,34 @@
 package com.moriahdp.app.data.repository.implementation
 
+import com.moriahdp.app.data.remote.model.TaskEntry
 import com.moriahdp.app.data.repository.interfaces.TaskRepository
 import com.moriahdp.app.data.remote.source.TaskRemoteDataSource
-import com.moriahdp.app.domain.model.Task
 
 class TaskRepositoryImpl(
     private val taskRemoteDataSource: TaskRemoteDataSource
 ) : TaskRepository {
 
-    override suspend fun getAllTasks(): MutableList<Task> {
+    override suspend fun getAllTasks(): MutableList<TaskEntry> {
         return mutableListOf(
-            Task(
+            TaskEntry(
                 1,
                 "Titleasf afasdf asdfasdf a f ",
                 "Description"
             ),
-            Task(2, "Title", "Description"),
-            Task(
+            TaskEntry(2, "Title", "Description"),
+            TaskEntry(
                 3,
                 "Title",
                 "Description sfasdf a dfas dfasd fasd fasd fasd fasd fasd fad f"
             ),
-            Task(4, "Title", "Description"),
-            Task(
+            TaskEntry(4, "Title", "Description"),
+            TaskEntry(
                 5,
                 "Title",
                 "Descriptionas dfas dfas dfasd fads fas f"
             ),
-            Task(6, "Title", "Description"),
-            Task(7, "Title", "Description")
+            TaskEntry(6, "Title", "Description"),
+            TaskEntry(7, "Title", "Description")
         )
     }
 }

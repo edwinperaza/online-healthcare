@@ -1,19 +1,18 @@
-package com.moriahdp.app.ui
+package com.moriahdp.app.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 
 import androidx.recyclerview.widget.RecyclerView
 import com.moriahdp.app.R
+import com.moriahdp.app.domain.model.Task
+import com.moriahdp.app.ui.adapter.viewholder.TaskAdapterViewHolder
 
-internal class TaskAdapter(
+class TaskAdapter(
     private val onItemClickHandler: TaskAdapterOnItemClickHandler
-) : RecyclerView.Adapter<TaskAdapter.TaskAdapterViewHolder>() {
+) : RecyclerView.Adapter<TaskAdapterViewHolder>() {
 
-    private lateinit var taskEntities: List<TaskEntity>
+    private var taskEntities: List<Task> = mutableListOf()
     private val pictureImages = intArrayOf(
         R.drawable.cohete_flat,
         R.drawable.london_flat,
@@ -35,7 +34,7 @@ internal class TaskAdapter(
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_task, viewGroup, false)
         view.isFocusable = true
-        return TaskAdapterViewHolder(view)
+        return TaskAdapterViewHolder(view, onItemClickHandler)
     }
 
     override fun onBindViewHolder(
@@ -43,12 +42,10 @@ internal class TaskAdapter(
         position: Int
     ) {
         val task = taskEntities[position]
-        taskAdapterViewHolder.titleView.text = task.title
-        taskAdapterViewHolder.descriptionView.text = task.description
-        taskAdapterViewHolder.imageView.setImageResource(pictureImages[(0..taskEntities.size).random()])
+        taskAdapterViewHolder.bind(task, pictureImages[(0..taskEntities.size).random()])
     }
 
-    fun updateTasks(tasks: List<TaskEntity>) {
+    fun updateTasks(tasks: List<Task>) {
         taskEntities = tasks
         notifyDataSetChanged()
     }
@@ -59,23 +56,5 @@ internal class TaskAdapter(
 
     interface TaskAdapterOnItemClickHandler {
         fun onItemClick(title: String)
-    }
-
-    internal inner class TaskAdapterViewHolder(view: View) : RecyclerView.ViewHolder(view),
-        View.OnClickListener {
-
-        val titleView: TextView = view.findViewById(R.id.titleView)
-        val descriptionView: TextView = view.findViewById(R.id.descriptionView)
-        val imageView: ImageView = view.findViewById(R.id.imageView)
-
-        init {
-            view.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View) {
-            val adapterPosition = adapterPosition
-            val title = taskEntities[adapterPosition].title
-            onItemClickHandler.onItemClick(title)
-        }
     }
 }

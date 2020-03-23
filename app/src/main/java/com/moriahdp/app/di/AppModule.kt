@@ -5,13 +5,18 @@ import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import com.moriahdp.app.URL_BASE_COVID_API
 import com.moriahdp.app.util.AppPreferences
-import com.moriahdp.app.data.interceptor.AuthInterceptor
-import com.moriahdp.app.data.interceptor.RefreshAuthTokenInterceptor
 import com.moriahdp.app.data.remote.net.TaskService
+import com.moriahdp.app.data.remote.source.TaskRemoteDataSource
+import com.moriahdp.app.data.repository.implementation.TaskRepositoryImpl
+import com.moriahdp.app.data.repository.interfaces.TaskRepository
+import com.moriahdp.app.domain.usecase.GetAllTasksUseCase
+import com.moriahdp.app.presentation.viewmodel.TaskViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
+import org.koin.core.qualifier.qualifier
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -50,15 +55,14 @@ val appModule = module {
 
     /* Retrofit */
     single {
-        named("covid")
         Retrofit.Builder()
-            .baseUrl(URL_BASE_COVID_API)
+            .baseUrl("https://api.covid19api.com/")
             .client(get())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    single { get<Retrofit>(named("covid")).create(TaskService::class.java) as TaskService }
+    single { get<Retrofit>().create(TaskService::class.java) as TaskService }
 
 
     /* Database */
@@ -73,20 +77,17 @@ val appModule = module {
     /* Dao Interfaces */
     //factory { get<AppDatabase>().userDao() }
 
-
     /* DataSource */
-    //factory { UserLocalDataSource(get()) }
-
+    factory { TaskRemoteDataSource(get()) }
 
     /* Repositories */
-    //factory { UserRepository(get(), get()) }
+    factory<TaskRepository> { TaskRepositoryImpl(get()) }
 
     /* View models */
-    //viewModel { LoginViewModel(get(), get(), get()) }
+    viewModel { TaskViewModel(get()) }
 
     /* UseCases */
-    //factory { LoginUseCase(get()) }
-
+    factory { GetAllTasksUseCase(get()) }
 
     /* Picasso */
 //    single {
