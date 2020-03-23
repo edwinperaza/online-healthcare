@@ -9,17 +9,17 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.moriahdp.app.databinding.TaskFragmentBinding
-import com.moriahdp.app.domain.model.Task
+import com.moriahdp.app.domain.model.CovidCountry
 import com.moriahdp.app.presentation.viewmodel.TaskViewModel
-import com.moriahdp.app.ui.adapter.TaskAdapter
+import com.moriahdp.app.ui.adapter.CovidCountryAdapter
 import com.moriahdp.core.coroutines.Result
 import com.moriahdp.core.extension.observe
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TaskFragment : Fragment(),
-    TaskAdapter.TaskAdapterOnItemClickHandler {
+class CovidCountryFragment : Fragment(),
+    CovidCountryAdapter.TaskAdapterOnItemClickHandler {
 
-    private lateinit var taskAdapter: TaskAdapter
+    private lateinit var covidCountryAdapter: CovidCountryAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var loading: ProgressBar
 
@@ -33,20 +33,16 @@ class TaskFragment : Fragment(),
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-
-//        val gridLayoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
-//            .apply {
-//                gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
-//            }
         val linearLayoutManager = LinearLayoutManager(context)
+        covidCountryAdapter = CovidCountryAdapter(this)
+
         loading = binding.loading
         recyclerView = binding.taskRecycler
             .apply {
                 layoutManager = linearLayoutManager
                 setHasFixedSize(true)
-                adapter = taskAdapter
+                adapter = covidCountryAdapter
             }
-        taskAdapter = TaskAdapter(this)
     }
 
     override fun onCreateView(
@@ -69,14 +65,15 @@ class TaskFragment : Fragment(),
         _binding = null
     }
 
-    private fun taskObserver(result: Result<List<Task>>?) {
+    private fun taskObserver(result: Result<List<CovidCountry>>?) {
 
         when (result) {
             is Result.OnLoading -> {
-
+                showLoading()
             }
             is Result.OnSuccess -> {
-                taskAdapter.updateTasks(result.value)
+                showTasksDataView()
+                covidCountryAdapter.updateTasks(result.value)
             }
             is Result.OnError -> {
 
@@ -102,6 +99,6 @@ class TaskFragment : Fragment(),
     }
 
     companion object {
-        fun newInstance() = TaskFragment()
+        fun newInstance() = CovidCountryFragment()
     }
 }

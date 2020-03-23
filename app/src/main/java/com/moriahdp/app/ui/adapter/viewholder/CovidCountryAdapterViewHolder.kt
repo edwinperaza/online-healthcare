@@ -5,12 +5,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.moriahdp.app.R
-import com.moriahdp.app.domain.model.Task
-import com.moriahdp.app.ui.adapter.TaskAdapter
+import com.moriahdp.app.domain.model.CovidCountry
+import com.moriahdp.app.ui.adapter.CovidCountryAdapter
 
-class TaskAdapterViewHolder(
+class CovidCountryAdapterViewHolder(
     private val view: View,
-    private val onItemClickHandler: TaskAdapter.TaskAdapterOnItemClickHandler
+    private val onItemClickHandler: CovidCountryAdapter.TaskAdapterOnItemClickHandler
 ) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
     private val titleView: TextView = view.findViewById(R.id.titleView)
@@ -21,9 +21,9 @@ class TaskAdapterViewHolder(
         view.setOnClickListener(this)
     }
 
-    fun bind(task: Task, image: Int) {
-        titleView.text = task.title
-        descriptionView.text = task.description
+    fun bind(covidCountry: CovidCountry, image: Int) {
+        titleView.text = covidCountry.country
+        descriptionView.text = covidCountry.countrySlug
         imageView.setImageResource(image)
     }
 

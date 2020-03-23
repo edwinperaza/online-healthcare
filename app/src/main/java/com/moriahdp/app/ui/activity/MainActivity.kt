@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LifecycleOwner
 import com.moriahdp.app.R
-import com.moriahdp.app.ui.fragment.TaskFragment
+import com.moriahdp.app.ui.fragment.CovidCountryFragment
 
 class MainActivity : AppCompatActivity(), LifecycleOwner {
 
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
                 .beginTransaction()
                 .replace(
                     R.id.main_container,
-                    TaskFragment.newInstance()
+                    CovidCountryFragment.newInstance()
                 )
                 .commit()
         }

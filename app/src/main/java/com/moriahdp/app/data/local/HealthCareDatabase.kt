@@ -5,22 +5,22 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.moriahdp.app.data.local.database.TaskRoomDao
-import com.moriahdp.app.data.local.model.TaskEntityModel
+import com.moriahdp.app.data.local.model.CovidCountryEntityModel
 
-@Database(entities = [TaskEntityModel::class], version = 1)
-abstract class TaskDataBase : RoomDatabase() {
+@Database(entities = [CovidCountryEntityModel::class], version = 1)
+abstract class HealthCareDatabase : RoomDatabase() {
 
     abstract fun taskRoomDao(): TaskRoomDao
 
     companion object {
-        private var INSTANCE: TaskDataBase? = null
+        private var INSTANCE: HealthCareDatabase? = null
 
-        fun getInstance(context: Context): TaskDataBase? {
+        fun getInstance(context: Context): HealthCareDatabase? {
             if (INSTANCE == null) {
-                synchronized(TaskDataBase::class) {
+                synchronized(HealthCareDatabase::class) {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
-                        TaskDataBase::class.java, "tasks.db"
+                        HealthCareDatabase::class.java, "health_care.db"
                     ).build()
                 }
             }

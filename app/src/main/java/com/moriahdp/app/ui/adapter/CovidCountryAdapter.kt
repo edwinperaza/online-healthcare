@@ -5,14 +5,14 @@ import android.view.ViewGroup
 
 import androidx.recyclerview.widget.RecyclerView
 import com.moriahdp.app.R
-import com.moriahdp.app.domain.model.Task
-import com.moriahdp.app.ui.adapter.viewholder.TaskAdapterViewHolder
+import com.moriahdp.app.domain.model.CovidCountry
+import com.moriahdp.app.ui.adapter.viewholder.CovidCountryAdapterViewHolder
 
-class TaskAdapter(
+class CovidCountryAdapter(
     private val onItemClickHandler: TaskAdapterOnItemClickHandler
-) : RecyclerView.Adapter<TaskAdapterViewHolder>() {
+) : RecyclerView.Adapter<CovidCountryAdapterViewHolder>() {
 
-    private var taskEntities: List<Task> = mutableListOf()
+    private var covidCountryEntities: List<CovidCountry> = mutableListOf()
     private val pictureImages = intArrayOf(
         R.drawable.cohete_flat,
         R.drawable.london_flat,
@@ -29,29 +29,29 @@ class TaskAdapter(
     override fun onCreateViewHolder(
         viewGroup: ViewGroup,
         viewType: Int
-    ): TaskAdapterViewHolder {
+    ): CovidCountryAdapterViewHolder {
 
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_task, viewGroup, false)
         view.isFocusable = true
-        return TaskAdapterViewHolder(view, onItemClickHandler)
+        return CovidCountryAdapterViewHolder(view, onItemClickHandler)
     }
 
     override fun onBindViewHolder(
-        taskAdapterViewHolder: TaskAdapterViewHolder,
+        covidCountryAdapterViewHolder: CovidCountryAdapterViewHolder,
         position: Int
     ) {
-        val task = taskEntities[position]
-        taskAdapterViewHolder.bind(task, pictureImages[(0..taskEntities.size).random()])
+        val task = covidCountryEntities[position]
+        covidCountryAdapterViewHolder.bind(task, pictureImages[(0..5).random()])
     }
 
-    fun updateTasks(tasks: List<Task>) {
-        taskEntities = tasks
+    fun updateTasks(covidCountries: List<CovidCountry>) {
+        covidCountryEntities = covidCountries
         notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
-        return taskEntities.size
+        return covidCountryEntities.size
     }
 
     interface TaskAdapterOnItemClickHandler {
