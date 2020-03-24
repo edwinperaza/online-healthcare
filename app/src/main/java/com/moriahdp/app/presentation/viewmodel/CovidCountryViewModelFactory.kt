@@ -2,15 +2,15 @@ package com.moriahdp.app.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.moriahdp.app.domain.usecase.GetAllTasksUseCase
+import com.moriahdp.app.domain.usecase.GetAllCovidCountryUseCase
 
-class TaskViewModelFactory(
-    private val getAllTasksUseCase: GetAllTasksUseCase
+class CovidCountryViewModelFactory(
+    private val getAllCovidCountryUseCase: GetAllCovidCountryUseCase
 ) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return TaskViewModel(
-            getAllTasksUseCase
+        return CovidCountryViewModel(
+            getAllCovidCountryUseCase
         ) as T
     }
 }

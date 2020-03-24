@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.moriahdp.app.data.local.model.CovidCountryEntityModel
 
 @Dao
-interface TaskRoomDao {
+interface CovidCountryRoomDao {
 
     @Query("SELECT * from covidCountry")
     fun getAll(): List<CovidCountryEntityModel>

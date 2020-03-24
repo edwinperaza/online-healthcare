@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.moriahdp.app.databinding.CovidCountryFragmentBinding
 import com.moriahdp.app.domain.model.CovidCountry
-import com.moriahdp.app.presentation.viewmodel.TaskViewModel
+import com.moriahdp.app.presentation.viewmodel.CovidCountryViewModel
 import com.moriahdp.app.ui.adapter.CovidCountryAdapter
 import com.moriahdp.app.ui.interfaces.FragmentHandling
 import com.moriahdp.core.coroutines.Result
@@ -25,7 +25,7 @@ class CovidCountryFragment : BaseFragment(), CovidCountryAdapter.CovidCountryCli
     private lateinit var loading: ProgressBar
     private lateinit var fragmentsCallback: FragmentHandling
 
-    private val viewModel: TaskViewModel by viewModel()
+    private val viewModel: CovidCountryViewModel by viewModel()
 
     private var _binding: CovidCountryFragmentBinding? = null
     private val binding get() = _binding!!

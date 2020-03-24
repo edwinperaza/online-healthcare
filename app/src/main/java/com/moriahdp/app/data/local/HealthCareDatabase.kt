@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.moriahdp.app.data.local.database.TaskRoomDao
+import com.moriahdp.app.data.local.database.CovidCountryRoomDao
 import com.moriahdp.app.data.local.model.CovidCountryEntityModel
 
 @Database(entities = [CovidCountryEntityModel::class], version = 1)
 abstract class HealthCareDatabase : RoomDatabase() {
 
-    abstract fun taskRoomDao(): TaskRoomDao
+    abstract fun taskRoomDao(): CovidCountryRoomDao
 
     companion object {
         private var INSTANCE: HealthCareDatabase? = null

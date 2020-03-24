@@ -3,20 +3,17 @@ package com.moriahdp.app.di
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
-import com.moriahdp.app.URL_BASE_COVID_API
 import com.moriahdp.app.util.AppPreferences
-import com.moriahdp.app.data.remote.net.TaskService
-import com.moriahdp.app.data.remote.source.TaskRemoteDataSource
-import com.moriahdp.app.data.repository.implementation.TaskRepositoryImpl
-import com.moriahdp.app.data.repository.interfaces.TaskRepository
-import com.moriahdp.app.domain.usecase.GetAllTasksUseCase
-import com.moriahdp.app.presentation.viewmodel.TaskViewModel
+import com.moriahdp.app.data.remote.net.CovidCountryService
+import com.moriahdp.app.data.remote.source.CovidCountryRemoteDataSource
+import com.moriahdp.app.data.repository.implementation.CovidCountryRepositoryImpl
+import com.moriahdp.app.data.repository.interfaces.CovidCountryRepository
+import com.moriahdp.app.domain.usecase.GetAllCovidCountryUseCase
+import com.moriahdp.app.presentation.viewmodel.CovidCountryViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.qualifier.named
-import org.koin.core.qualifier.qualifier
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -62,7 +59,7 @@ val appModule = module {
             .build()
     }
 
-    single { get<Retrofit>().create(TaskService::class.java) as TaskService }
+    single { get<Retrofit>().create(CovidCountryService::class.java) as CovidCountryService }
 
 
     /* Database */
@@ -78,15 +75,15 @@ val appModule = module {
     //factory { get<AppDatabase>().userDao() }
 
     /* DataSource */
-    factory { TaskRemoteDataSource(get()) }
+    factory { CovidCountryRemoteDataSource(get()) }
 
     /* Repositories */
-    factory<TaskRepository> { TaskRepositoryImpl(get()) }
+    factory<CovidCountryRepository> { CovidCountryRepositoryImpl(get()) }
 
     /* View models */
-    viewModel { TaskViewModel(get()) }
+    viewModel { CovidCountryViewModel(get()) }
 
     /* UseCases */
-    factory { GetAllTasksUseCase(get()) }
+    factory { GetAllCovidCountryUseCase(get()) }
 
 }

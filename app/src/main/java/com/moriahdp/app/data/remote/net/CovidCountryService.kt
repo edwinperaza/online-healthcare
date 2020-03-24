@@ -4,7 +4,7 @@ import com.moriahdp.app.data.remote.model.CovidSummary
 import retrofit2.Call
 import retrofit2.http.GET
 
-interface TaskService {
+interface CovidCountryService {
 
   @GET("summary")
   fun getAllTasksAsync(): Call<CovidSummary>
