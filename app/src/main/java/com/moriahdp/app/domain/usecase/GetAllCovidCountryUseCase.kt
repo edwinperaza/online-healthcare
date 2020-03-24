@@ -16,7 +16,9 @@ class GetAllCovidCountryUseCase(
     override suspend fun executeOnBackground(params: String): List<CovidCountry> {
         val covidCountryList: MutableList<CovidCountry> = mutableListOf()
         covidCountryRepository.getAllCovidCountry().forEach {
-            covidCountryList.add(it.toCovidCountry())
+            if (it.totalConfirmed != 0) {
+                covidCountryList.add(it.toCovidCountry())
+            }
         }
         return covidCountryList
     }
