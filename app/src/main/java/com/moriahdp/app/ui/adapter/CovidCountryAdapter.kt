@@ -9,7 +9,7 @@ import com.moriahdp.app.domain.model.CovidCountry
 import com.moriahdp.app.ui.adapter.viewholder.CovidCountryAdapterViewHolder
 
 class CovidCountryAdapter(
-    private val onItemClickHandler: TaskAdapterOnItemClickHandler
+    private val onItemClickListener: CovidCountryClickListener
 ) : RecyclerView.Adapter<CovidCountryAdapterViewHolder>() {
 
     private var covidCountryEntities: List<CovidCountry> = mutableListOf()
@@ -22,7 +22,7 @@ class CovidCountryAdapter(
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_covid_country, viewGroup, false)
         view.isFocusable = true
-        return CovidCountryAdapterViewHolder(view, onItemClickHandler)
+        return CovidCountryAdapterViewHolder(view, onItemClickListener)
     }
 
     override fun onBindViewHolder(
@@ -42,7 +42,7 @@ class CovidCountryAdapter(
         return covidCountryEntities.size
     }
 
-    interface TaskAdapterOnItemClickHandler {
-        fun onItemClick(title: String)
+    interface CovidCountryClickListener {
+        fun onItemClick(covidCountrySlug: String)
     }
 }

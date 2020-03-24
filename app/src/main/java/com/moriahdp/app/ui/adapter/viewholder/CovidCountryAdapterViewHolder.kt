@@ -11,8 +11,8 @@ import com.moriahdp.app.util.getFlagUrlByCountry
 import com.squareup.picasso.Picasso
 
 class CovidCountryAdapterViewHolder(
-    private val view: View,
-    private val onItemClickHandler: CovidCountryAdapter.TaskAdapterOnItemClickHandler
+    view: View,
+    private val onItemClickListener: CovidCountryAdapter.CovidCountryClickListener
 ) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
     private val countryLabel: TextView = view.findViewById(R.id.countryLabel)
@@ -20,6 +20,7 @@ class CovidCountryAdapterViewHolder(
     private val totalDeathValue: TextView = view.findViewById(R.id.totalDeathsValue)
     private val totalRecoveredValue: TextView = view.findViewById(R.id.totalRecoveredValue)
     private val imageView: ImageView = view.findViewById(R.id.countryFlagImage)
+    private var countrySlug = ""
 
     init {
         view.setOnClickListener(this)
@@ -31,11 +32,10 @@ class CovidCountryAdapterViewHolder(
         totalDeathValue.text = covidCountry.totalDeaths.toString()
         totalRecoveredValue.text = covidCountry.totalRecovered.toString()
         Picasso.get().load(getFlagUrlByCountry(covidCountry.countrySlug)).into(imageView)
+        countrySlug = covidCountry.countrySlug
     }
 
     override fun onClick(v: View) {
-        val adapterPosition = adapterPosition
-        val title = countryLabel.text.toString()
-        onItemClickHandler.onItemClick(title)
+        onItemClickListener.onItemClick(countrySlug)
     }
 }

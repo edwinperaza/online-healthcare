@@ -5,4 +5,7 @@
     <string name="total_confirmed">Casos Confirmados:</string>
     <string name="total_recovered">Casos Recuperados:</string>
     <string name="total_deaths">Muertes Confirmadas:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
