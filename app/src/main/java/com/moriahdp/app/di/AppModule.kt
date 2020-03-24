@@ -89,9 +89,4 @@ val appModule = module {
     /* UseCases */
     factory { GetAllTasksUseCase(get()) }
 
-    /* Picasso */
-//    single {
-//        Picasso.get()
-//    }
-
 }

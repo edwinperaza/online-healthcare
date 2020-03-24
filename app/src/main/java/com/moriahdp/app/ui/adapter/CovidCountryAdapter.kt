@@ -13,18 +13,6 @@ class CovidCountryAdapter(
 ) : RecyclerView.Adapter<CovidCountryAdapterViewHolder>() {
 
     private var covidCountryEntities: List<CovidCountry> = mutableListOf()
-    private val pictureImages = intArrayOf(
-        R.drawable.cohete_flat,
-        R.drawable.london_flat,
-        R.drawable.material_flat,
-        R.drawable.moon_flat,
-        R.drawable.mountain_flat,
-        R.drawable.mountain_mo_flat,
-        R.drawable.moutain_go_flat,
-        R.drawable.pine_flat,
-        R.drawable.towers_flat,
-        R.drawable.vulcan_flat
-    )
 
     override fun onCreateViewHolder(
         viewGroup: ViewGroup,
@@ -32,7 +20,7 @@ class CovidCountryAdapter(
     ): CovidCountryAdapterViewHolder {
 
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_task, viewGroup, false)
+            .inflate(R.layout.item_covid_country, viewGroup, false)
         view.isFocusable = true
         return CovidCountryAdapterViewHolder(view, onItemClickHandler)
     }
@@ -42,7 +30,7 @@ class CovidCountryAdapter(
         position: Int
     ) {
         val task = covidCountryEntities[position]
-        covidCountryAdapterViewHolder.bind(task, pictureImages[(0..5).random()])
+        covidCountryAdapterViewHolder.bind(task)
     }
 
     fun updateTasks(covidCountries: List<CovidCountry>) {

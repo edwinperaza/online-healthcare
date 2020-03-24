@@ -69,6 +69,9 @@ dependencies {
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${versions.retrofit_coroutine_adapter}"
     api "com.squareup.okhttp3:logging-interceptor:${versions.login_interceptor}"
 
+    // Picasso
+    implementation "com.squareup.picasso:picasso:${versions.picasso}"
+
     // Room
     api "androidx.room:room-ktx:${versions.room}"
     api "androidx.room:room-runtime:${versions.room}"

@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">Notes</string>
+    <string name="app_name">Online Health Care</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="com.crashlytics.android.build_id">223205775</string>
+    <string name="total_confirmed">Casos Confirmados:</string>
+    <string name="total_recovered">Casos Recuperados:</string>
+    <string name="total_deaths">Muertes Confirmadas:</string>
 </resources>

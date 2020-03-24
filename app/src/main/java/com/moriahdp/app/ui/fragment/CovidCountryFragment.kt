@@ -8,7 +8,7 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.moriahdp.app.databinding.TaskFragmentBinding
+import com.moriahdp.app.databinding.CovidCountryFragmentBinding
 import com.moriahdp.app.domain.model.CovidCountry
 import com.moriahdp.app.presentation.viewmodel.TaskViewModel
 import com.moriahdp.app.ui.adapter.CovidCountryAdapter
@@ -25,7 +25,7 @@ class CovidCountryFragment : Fragment(),
 
     private val viewModel: TaskViewModel by viewModel()
 
-    private var _binding: TaskFragmentBinding? = null
+    private var _binding: CovidCountryFragmentBinding? = null
     private val binding get() = _binding!!
 
     override fun onViewCreated(
@@ -50,7 +50,7 @@ class CovidCountryFragment : Fragment(),
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = TaskFragmentBinding.inflate(inflater, container, false)
+        _binding = CovidCountryFragmentBinding.inflate(inflater, container, false)
 
         with(viewModel) {
             observe(tasks, ::taskObserver)
