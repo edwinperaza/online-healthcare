@@ -3,6 +3,8 @@ package com.moriahdp.app.di
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.moriahdp.app.util.AppPreferences
 import com.moriahdp.app.data.remote.net.CovidCountryService
 import com.moriahdp.app.data.remote.source.CovidCountryRemoteDataSource
@@ -48,6 +50,10 @@ val appModule = module {
 //            .addInterceptor(RefreshAuthTokenInterceptor(AppPreferences))
             .addInterceptor(logging)
             .build()
+    }
+
+    single {
+        Firebase.firestore
     }
 
     /* Retrofit */

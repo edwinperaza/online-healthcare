@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId 'com.moriahdp.app'
+        applicationId 'com.moriahdp.onlinehealth'
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -77,8 +77,23 @@ dependencies {
     api "androidx.room:room-runtime:${versions.room}"
     kapt "androidx.room:room-compiler:${versions.room}"
 
+    // Firebase
+    implementation 'com.google.firebase:firebase-analytics:17.2.3'
+    implementation ('com.google.firebase:firebase-firestore-ktx:21.4.1')
+//            {
+//        exclude group: "com.google.guava:listenablefuture:1.0"
+//    }
+
+
+    // Custom Tabs
+//    implementation ('androidx.browser:browser:1.2.0') {
+//        exclude group: "com.google.guava:guava:26.0-android"
+//    }
+
     // Testing
     testImplementation "junit:junit:${versions.test_junit}"
     androidTestImplementation "androidx.test:runner:${versions.test_runner}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.test_espresso_core}"
 }
+
+apply plugin: 'com.google.gms.google-services'

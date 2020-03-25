@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.moriahdp.app.R
 import com.moriahdp.app.ui.fragment.CovidCountryDetailFragment
 import com.moriahdp.app.ui.fragment.CovidCountryFragment
+import com.moriahdp.app.ui.fragment.FeedFragment
 import com.moriahdp.app.ui.interfaces.FragmentHandling
 
 class MainActivity : BaseActivity(), LifecycleOwner, FragmentHandling {
@@ -27,19 +28,19 @@ class MainActivity : BaseActivity(), LifecycleOwner, FragmentHandling {
             getFragmentToShow(it)
             true
         }
-        bottomNavigation.selectedItemId = R.id.nav_covid
+        bottomNavigation.selectedItemId = R.id.nav_home
     }
 
     private fun getFragmentToShow(menuItem: MenuItem) {
         when (menuItem.itemId) {
             R.id.nav_home -> {
-                replaceFragmentAndAddToBackStack(CovidCountryFragment.newInstance(), "CovidCountry")
+                replaceFragmentAndAddToBackStack(FeedFragment.newInstance(), "Feed")
             }
             R.id.nav_covid -> {
-                replaceFragmentAndAddToBackStack(CovidCountryDetailFragment.newInstance("covidCountrySlug"), "CovidCountry")
+                replaceFragmentAndAddToBackStack(CovidCountryFragment.newInstance(), "CovidCountry")
             }
             R.id.nav_notifications -> {
-                replaceFragmentAndAddToBackStack(CovidCountryFragment.newInstance(), "CovidCountry")
+                replaceFragmentAndAddToBackStack(CovidCountryDetailFragment.newInstance("covidCountrySlug"), "CovidCountry")
             }
         }
     }

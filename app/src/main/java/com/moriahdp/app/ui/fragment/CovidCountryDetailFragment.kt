@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.moriahdp.app.databinding.FragmentCovidCountryDetailBinding
 
 private const val COUNTRY_SLUG = "countrySlug"
@@ -27,7 +26,6 @@ class CovidCountryDetailFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCovidCountryDetailBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
