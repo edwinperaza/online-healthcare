@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.moriahdp.app.R
 import com.moriahdp.app.domain.model.FeedItem
 import com.moriahdp.app.ui.adapter.FeedAdapter
-import kotlinx.android.synthetic.main.item_feed.view.*
 
 class FeedViewHolder(
     view: View,

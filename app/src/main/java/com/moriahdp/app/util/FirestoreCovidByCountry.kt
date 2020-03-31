@@ -1,11 +1,8 @@
 package com.moriahdp.app.util
 
 import android.util.Log
-import androidx.lifecycle.ComputableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moriahdp.app.domain.model.CovidCountry
-import com.moriahdp.app.domain.model.FeedItem
-import com.moriahdp.app.ui.interfaces.OnCovidByCountryResponse
 import com.moriahdp.core.extension.LiveResult
 import com.moriahdp.core.extension.postSuccess
 import org.koin.core.KoinComponent

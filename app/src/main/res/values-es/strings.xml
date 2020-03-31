@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Online Health Care</string>
+
+    <string name="total_confirmed">Casos Confirmados:</string>
+    <string name="total_recovered">Casos Recuperados:</string>
+    <string name="total_deaths">Muertes Confirmadas:</string>
+
+    <string name="feature_soon">In progress</string>
+
+    <!-- Bottom Navigation Menu-->
+    <string name="nav_feed">Noticias</string>
+    <string name="nav_covid_by_country">Covid-19</string>
+    <string name="nav_notifications">Notificaciones</string>
+</resources>

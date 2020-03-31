@@ -1,8 +1,8 @@
 package com.moriahdp.app
 
 import android.app.Application
-import com.moriahdp.app.di.appModule
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.moriahdp.app.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

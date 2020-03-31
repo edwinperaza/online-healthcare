@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.moriahdp.app.util.AppPreferences
 import com.moriahdp.app.data.remote.net.CovidCountryService
 import com.moriahdp.app.data.remote.source.CovidCountryRemoteDataSource
 import com.moriahdp.app.data.repository.implementation.CovidCountryRepositoryImpl
@@ -13,6 +12,7 @@ import com.moriahdp.app.data.repository.interfaces.CovidCountryRepository
 import com.moriahdp.app.domain.usecase.GetAllCovidCountryUseCase
 import com.moriahdp.app.presentation.viewmodel.CovidCountryViewModel
 import com.moriahdp.app.presentation.viewmodel.FeedViewModel
+import com.moriahdp.app.util.AppPreferences
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
