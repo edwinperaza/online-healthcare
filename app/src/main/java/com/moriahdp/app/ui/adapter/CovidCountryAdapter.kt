@@ -33,7 +33,7 @@ class CovidCountryAdapter(
         covidCountryAdapterViewHolder.bind(task)
     }
 
-    fun updateTasks(covidCountries: List<CovidCountry>) {
+    fun updateCovidCountryList(covidCountries: List<CovidCountry>) {
         covidCountryEntities = covidCountries
         notifyDataSetChanged()
     }

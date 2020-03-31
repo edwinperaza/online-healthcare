@@ -1,7 +1,5 @@
 package com.moriahdp.app.ui.fragment
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.moriahdp.app.databinding.FeedFragmentBinding
 import com.moriahdp.app.domain.model.FeedItem
+import com.moriahdp.app.presentation.viewmodel.FeedViewModel
 import com.moriahdp.app.ui.adapter.FeedAdapter
-import com.moriahdp.app.ui.interfaces.OnFeedResponse
-import com.moriahdp.app.util.FirestoreFeed
-import com.moriahdp.app.ui.activity.WebViewActivity
+import com.moriahdp.core.coroutines.Result
+import com.moriahdp.core.extension.observe
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FeedFragment : BaseFragment(), FeedAdapter.FeedOnClickListener {
 
@@ -25,11 +24,7 @@ class FeedFragment : BaseFragment(), FeedAdapter.FeedOnClickListener {
     private var _binding: FeedFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private var listener = object : OnFeedResponse {
-        override fun onFeedResponse(feedList: MutableList<FeedItem>) {
-            feedAdapter.updateFeed(feedList)
-        }
-    }
+    private val viewModel: FeedViewModel by viewModel()
 
     override fun onViewCreated(
         view: View,
@@ -45,7 +40,6 @@ class FeedFragment : BaseFragment(), FeedAdapter.FeedOnClickListener {
                 setHasFixedSize(true)
                 adapter = feedAdapter
             }
-        FirestoreFeed.getFeed(listener)
     }
 
     override fun onCreateView(
@@ -54,6 +48,12 @@ class FeedFragment : BaseFragment(), FeedAdapter.FeedOnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FeedFragmentBinding.inflate(inflater, container, false)
+
+        with(viewModel) {
+            observe(feedItemList, ::feedObserver)
+            viewModel.getFeed()
+        }
+
         return binding.root
     }
 
@@ -63,9 +63,35 @@ class FeedFragment : BaseFragment(), FeedAdapter.FeedOnClickListener {
     }
 
     override fun onItemClick(url: String) {
-//        val intentOpenUri = Intent(requireContext(), WebViewActivity::class.java)
-//        intentOpenUri.putExtra(WebViewActivity.EXTRA_URL, url)
-//        startActivity(intentOpenUri)
+    }
+
+    private fun feedObserver(result: Result<List<FeedItem>>?) {
+
+        when (result) {
+            is Result.OnLoading -> {
+                showLoading()
+            }
+            is Result.OnSuccess -> {
+                showFeedDataView()
+                feedAdapter.updateFeed(result.value)
+            }
+            is Result.OnError -> {
+
+            }
+            else -> {
+
+            }
+        }
+    }
+
+    private fun showFeedDataView() {
+        loading.visibility = View.INVISIBLE
+        recyclerView.visibility = View.VISIBLE
+    }
+
+    private fun showLoading() {
+        recyclerView.visibility = View.INVISIBLE
+        loading.visibility = View.VISIBLE
     }
 
     companion object {

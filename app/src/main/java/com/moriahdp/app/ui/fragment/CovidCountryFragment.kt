@@ -11,13 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.moriahdp.app.databinding.CovidCountryFragmentBinding
 import com.moriahdp.app.domain.model.CovidCountry
-import com.moriahdp.app.domain.model.FeedItem
 import com.moriahdp.app.presentation.viewmodel.CovidCountryViewModel
 import com.moriahdp.app.ui.adapter.CovidCountryAdapter
 import com.moriahdp.app.ui.interfaces.FragmentHandling
-import com.moriahdp.app.ui.interfaces.OnCovidByCountryResponse
-import com.moriahdp.app.ui.interfaces.OnFeedResponse
-import com.moriahdp.app.util.FirestoreCovidByCountry
 import com.moriahdp.core.coroutines.Result
 import com.moriahdp.core.extension.observe
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,12 +30,6 @@ class CovidCountryFragment : BaseFragment(), CovidCountryAdapter.CovidCountryCli
     private var _binding: CovidCountryFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private var listener = object : OnCovidByCountryResponse {
-        override fun onCovidByCountryResponse(covidCountryList: MutableList<CovidCountry>) {
-            covidCountryAdapter.updateTasks(covidCountryList)
-        }
-    }
-
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
@@ -55,7 +45,6 @@ class CovidCountryFragment : BaseFragment(), CovidCountryAdapter.CovidCountryCli
                 setHasFixedSize(true)
                 adapter = covidCountryAdapter
             }
-        FirestoreCovidByCountry.getCovidByCountry(listener)
     }
 
     override fun onCreateView(
@@ -65,10 +54,10 @@ class CovidCountryFragment : BaseFragment(), CovidCountryAdapter.CovidCountryCli
     ): View? {
         _binding = CovidCountryFragmentBinding.inflate(inflater, container, false)
 
-//        with(viewModel) {
-//            observe(tasks, ::taskObserver)
-//            viewModel.getAllTask()
-//        }
+        with(viewModel) {
+            observe(covidByCountryList, ::covidCountryObserver)
+            viewModel.getAllCovidDataByCountry()
+        }
 
         return binding.root
     }
@@ -78,15 +67,15 @@ class CovidCountryFragment : BaseFragment(), CovidCountryAdapter.CovidCountryCli
         _binding = null
     }
 
-    private fun taskObserver(result: Result<List<CovidCountry>>?) {
+    private fun covidCountryObserver(result: Result<List<CovidCountry>>?) {
 
         when (result) {
             is Result.OnLoading -> {
                 showLoading()
             }
             is Result.OnSuccess -> {
-                showTasksDataView()
-                covidCountryAdapter.updateTasks(result.value)
+                showCovidCountryDataView()
+                covidCountryAdapter.updateCovidCountryList(result.value)
             }
             is Result.OnError -> {
 
@@ -97,7 +86,7 @@ class CovidCountryFragment : BaseFragment(), CovidCountryAdapter.CovidCountryCli
         }
     }
 
-    private fun showTasksDataView() {
+    private fun showCovidCountryDataView() {
         loading.visibility = View.INVISIBLE
         recyclerView.visibility = View.VISIBLE
     }

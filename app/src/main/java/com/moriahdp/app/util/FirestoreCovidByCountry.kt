@@ -1,10 +1,13 @@
 package com.moriahdp.app.util
 
 import android.util.Log
+import androidx.lifecycle.ComputableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moriahdp.app.domain.model.CovidCountry
 import com.moriahdp.app.domain.model.FeedItem
 import com.moriahdp.app.ui.interfaces.OnCovidByCountryResponse
+import com.moriahdp.core.extension.LiveResult
+import com.moriahdp.core.extension.postSuccess
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
@@ -12,7 +15,7 @@ object FirestoreCovidByCountry : KoinComponent {
 
     private val db: FirebaseFirestore by inject()
 
-    fun getCovidByCountry(listener: OnCovidByCountryResponse) {
+    fun getCovidByCountry(liveData: LiveResult<List<CovidCountry>>) {
             db.collection("covidCasesByCountry")
                 .orderBy("name")
                 .get()
@@ -33,7 +36,7 @@ object FirestoreCovidByCountry : KoinComponent {
                             )
                         )
                     }
-                    listener.onCovidByCountryResponse(feedList)
+                    liveData.postSuccess(feedList)
                 }
                 .addOnFailureListener { exception ->
                     Log.d("EDWIN", "Error getting documents: ", exception)

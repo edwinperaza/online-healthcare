@@ -3,7 +3,8 @@ package com.moriahdp.app.util
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moriahdp.app.domain.model.FeedItem
-import com.moriahdp.app.ui.interfaces.OnFeedResponse
+import com.moriahdp.core.extension.LiveResult
+import com.moriahdp.core.extension.postSuccess
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
@@ -11,7 +12,7 @@ object FirestoreFeed : KoinComponent {
 
     private val db: FirebaseFirestore by inject()
 
-    fun getFeed(listener: OnFeedResponse) {
+    fun getFeed(liveData: LiveResult<List<FeedItem>>) {
         db.collection("feeds")
             .get()
             .addOnSuccessListener { result ->
@@ -29,7 +30,7 @@ object FirestoreFeed : KoinComponent {
                         )
                     )
                 }
-                listener.onFeedResponse(feedList)
+                liveData.postSuccess(feedList)
             }
             .addOnFailureListener { exception ->
                 Log.d("EDWIN", "Error getting documents: ", exception)

@@ -12,6 +12,7 @@ import com.moriahdp.app.data.repository.implementation.CovidCountryRepositoryImp
 import com.moriahdp.app.data.repository.interfaces.CovidCountryRepository
 import com.moriahdp.app.domain.usecase.GetAllCovidCountryUseCase
 import com.moriahdp.app.presentation.viewmodel.CovidCountryViewModel
+import com.moriahdp.app.presentation.viewmodel.FeedViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -88,6 +89,7 @@ val appModule = module {
 
     /* View models */
     viewModel { CovidCountryViewModel(get()) }
+    viewModel { FeedViewModel() }
 
     /* UseCases */
     factory { GetAllCovidCountryUseCase(get()) }
