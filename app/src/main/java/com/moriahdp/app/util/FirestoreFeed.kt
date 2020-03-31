@@ -29,7 +29,7 @@ object FirestoreFeed : KoinComponent {
                         )
                     )
                 }
-                listener.onItemClick(feedList)
+                listener.onFeedResponse(feedList)
             }
             .addOnFailureListener { exception ->
                 Log.d("EDWIN", "Error getting documents: ", exception)

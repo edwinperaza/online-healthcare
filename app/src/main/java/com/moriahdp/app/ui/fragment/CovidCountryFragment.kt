@@ -11,9 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.moriahdp.app.databinding.CovidCountryFragmentBinding
 import com.moriahdp.app.domain.model.CovidCountry
+import com.moriahdp.app.domain.model.FeedItem
 import com.moriahdp.app.presentation.viewmodel.CovidCountryViewModel
 import com.moriahdp.app.ui.adapter.CovidCountryAdapter
 import com.moriahdp.app.ui.interfaces.FragmentHandling
+import com.moriahdp.app.ui.interfaces.OnCovidByCountryResponse
+import com.moriahdp.app.ui.interfaces.OnFeedResponse
+import com.moriahdp.app.util.FirestoreCovidByCountry
 import com.moriahdp.core.coroutines.Result
 import com.moriahdp.core.extension.observe
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,6 +34,12 @@ class CovidCountryFragment : BaseFragment(), CovidCountryAdapter.CovidCountryCli
     private var _binding: CovidCountryFragmentBinding? = null
     private val binding get() = _binding!!
 
+    private var listener = object : OnCovidByCountryResponse {
+        override fun onCovidByCountryResponse(covidCountryList: MutableList<CovidCountry>) {
+            covidCountryAdapter.updateTasks(covidCountryList)
+        }
+    }
+
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
@@ -45,6 +55,7 @@ class CovidCountryFragment : BaseFragment(), CovidCountryAdapter.CovidCountryCli
                 setHasFixedSize(true)
                 adapter = covidCountryAdapter
             }
+        FirestoreCovidByCountry.getCovidByCountry(listener)
     }
 
     override fun onCreateView(
@@ -54,10 +65,10 @@ class CovidCountryFragment : BaseFragment(), CovidCountryAdapter.CovidCountryCli
     ): View? {
         _binding = CovidCountryFragmentBinding.inflate(inflater, container, false)
 
-        with(viewModel) {
-            observe(tasks, ::taskObserver)
-            viewModel.getAllTask()
-        }
+//        with(viewModel) {
+//            observe(tasks, ::taskObserver)
+//            viewModel.getAllTask()
+//        }
 
         return binding.root
     }

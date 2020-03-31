@@ -26,7 +26,7 @@ class FeedFragment : BaseFragment(), FeedAdapter.FeedOnClickListener {
     private val binding get() = _binding!!
 
     private var listener = object : OnFeedResponse {
-        override fun onItemClick(feedList: MutableList<FeedItem>) {
+        override fun onFeedResponse(feedList: MutableList<FeedItem>) {
             feedAdapter.updateFeed(feedList)
         }
     }
