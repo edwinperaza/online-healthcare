@@ -13,7 +13,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_grey_gradient">
 
         <TextView
             android:id="@+id/feedItemTitle"
@@ -25,10 +26,11 @@
             android:textSize="18sp"
             android:maxLines="1"
             android:ellipsize="end"
+            android:textColor="@color/white_90_percent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Author" />
+            tools:text="Title" />
 
         <TextView
             android:id="@+id/feedItemAuthorAndSource"
@@ -39,11 +41,12 @@
             android:layout_marginEnd="4dp"
             android:textSize="12sp"
             android:textStyle="bold"
+            android:textColor="@color/white_90_percent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/feedItemTitle"
-            tools:text="Title" />
+            tools:text="Author" />
 
         <TextView
             android:id="@+id/feedItemResume"
