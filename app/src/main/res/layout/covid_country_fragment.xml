@@ -1,9 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white_70_percent">
+
+        <ImageView
+            android:id="@+id/confirmedColor"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/confirmedTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/bg_confirmed" />
+
+        <TextView
+            android:id="@+id/confirmedTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/confirmed"
+            android:textAlignment="center"
+            android:textColor="@color/gray_extra_dark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/confirmedColor"
+            app:layout_constraintEnd_toStartOf="@+id/recoveredColor"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/confirmedColor"
+            app:layout_constraintTop_toTopOf="@+id/confirmedColor" />
+
+        <ImageView
+            android:id="@+id/recoveredColor"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/recoveredTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/confirmedTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/bg_recovered" />
+
+        <TextView
+            android:id="@+id/recoveredTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/recovered"
+            android:textAlignment="center"
+            android:textColor="@color/gray_extra_dark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/recoveredColor"
+            app:layout_constraintEnd_toStartOf="@+id/deathColor"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/recoveredColor"
+            app:layout_constraintTop_toTopOf="@+id/recoveredColor" />
+
+        <ImageView
+            android:id="@+id/deathColor"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/deathTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/recoveredTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/bg_death" />
+
+        <TextView
+            android:id="@+id/deathTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/deaths"
+            android:textAlignment="center"
+            android:textColor="@color/gray_extra_dark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/deathColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/deathColor"
+            app:layout_constraintTop_toTopOf="@+id/deathColor" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskRecycler"
@@ -12,7 +113,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <ProgressBar
         android:id="@+id/loading"

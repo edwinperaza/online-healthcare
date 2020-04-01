@@ -6,6 +6,10 @@
     <string name="total_recovered">Casos Recuperados:</string>
     <string name="total_deaths">Muertes Confirmadas:</string>
 
+    <string name="confirmed">Confirmados</string>
+    <string name="recovered">Recuperados</string>
+    <string name="deaths">Muertos</string>
+
     <string name="feature_soon">In progress</string>
 
     <!-- Bottom Navigation Menu-->

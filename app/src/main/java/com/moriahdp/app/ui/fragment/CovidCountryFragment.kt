@@ -97,9 +97,9 @@ class CovidCountryFragment : BaseFragment(), CovidCountryAdapter.CovidCountryCli
     }
 
     override fun onItemClick(covidCountrySlug: String) {
-        fragmentsCallback.replaceFragmentWithBackStack(
-            CovidCountryDetailFragment.newInstance(covidCountrySlug),
-            "CovidCountryDetailFragment")
+//        fragmentsCallback.replaceFragmentWithBackStack(
+//            CovidCountryDetailFragment.newInstance(covidCountrySlug),
+//            "CovidCountryDetailFragment")
     }
 
     companion object {

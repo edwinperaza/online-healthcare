@@ -14,24 +14,26 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F8F8F8"
-        android:orientation="vertical">
+        android:background="@drawable/bg_grey_gradient">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/countryFlagImage"
             android:layout_width="100dp"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:layout_marginStart="4dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/cohete_flat" />
+            app:srcCompat="@drawable/bg_death" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,79 +48,57 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="@color/white_90_percent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Country" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/totalConfirmedLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/total_confirmed"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/countryLabel" />
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/totalConfirmedValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/totalConfirmedLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/totalConfirmedLabel"
-                app:layout_constraintTop_toTopOf="@+id/totalConfirmedLabel"
-                tools:text="10" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/totalRecoveredLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/total_recovered"
-                android:textSize="14sp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/yellowConfirmed"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/totalRecoveredValue"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/totalConfirmedLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/countryLabel"
+                tools:text="10" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/totalRecoveredValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/totalRecoveredLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/totalRecoveredLabel"
-                app:layout_constraintTop_toTopOf="@+id/totalRecoveredLabel"
+                android:textColor="@color/greenRecovered"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/totalDeathsValue"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/totalConfirmedValue"
+                app:layout_constraintTop_toBottomOf="@+id/countryLabel"
                 tools:text="10" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/totalDeathsLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/total_deaths"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/totalRecoveredLabel" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/totalDeathsValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/totalDeathsLabel"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/redDeaths"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/totalDeathsLabel"
-                app:layout_constraintTop_toTopOf="@+id/totalDeathsLabel"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/totalRecoveredValue"
+                app:layout_constraintTop_toBottomOf="@+id/countryLabel"
                 tools:text="10" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

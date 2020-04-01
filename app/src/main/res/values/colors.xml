@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#555656</color>
+    <color name="colorPrimaryDark">#80000000</color>
+    <color name="colorAccent">#FFC400</color>
+
+    <color name="black">#000000</color>
+    <color name="black_30_percent">#4D000000</color>
+    <color name="black_50_percent">#80000000</color>
+    <color name="black_70_percent">#B3000000</color>
+    <color name="gray_blue">#607D8B</color>
+    <color name="gray_extra_dark">#212121</color>
+    <color name="gray_dark">#555656</color>
+    <color name="gray">#9F9F9F</color>
+    <color name="gray_30_percent">#4D9F9F9F</color>
+    <color name="gray_light">#C9C9C9</color>
+    <color name="gray_extra_light">#F4F5F5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_30_percent">#4DFFFFFF</color>
+    <color name="white_70_percent">#B3FFFFFF</color>
+    <color name="white_90_percent">#E6FFFFFF</color>
+    <color name="red">#E20F33</color>
+    <color name="red_light">#EF5350</color>
+
+    <!-- Red gradient -->
+    <color name="redSemiDark">#FF1744</color>
+    <color name="redDeaths">#B71C1C</color>
+
+    <!-- Amber gradient -->
+    <color name="yellowConfirmed">#FFC400</color>
+    <color name="orange">#FF6F00</color>
+
+    <!-- Green gradient -->
+    <color name="greenRecovered">#1B5E20</color>
+    <color name="greenLight">#00E676</color>
+
 </resources>
