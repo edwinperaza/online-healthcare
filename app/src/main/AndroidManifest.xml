@@ -15,10 +15,6 @@
         <activity
             android:name="com.moriahdp.app.ui.activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
         <activity
             android:name="com.moriahdp.app.ui.activity.MainActivity"
@@ -36,6 +32,11 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
+        <!-- AdMob ID: ca-app-pub-1849966505574264~2182613230 -->
+<!--        ca-app-pub-1849966505574264/6788072651-->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
     </application>
 
 </manifest>

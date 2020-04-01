@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.moriahdp.app.databinding.FeedFragmentBinding
 import com.moriahdp.app.domain.model.FeedItem
 import com.moriahdp.app.presentation.viewmodel.FeedViewModel
@@ -40,6 +42,11 @@ class FeedFragment : BaseFragment(), FeedAdapter.FeedOnClickListener {
                 setHasFixedSize(true)
                 adapter = feedAdapter
             }
+
+        MobileAds.initialize(requireContext()) {}
+        val mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
     override fun onCreateView(
