@@ -1,10 +1,12 @@
 package com.moriahdp.app.ui.fragment
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
@@ -70,6 +72,14 @@ class FeedFragment : BaseFragment(), FeedAdapter.FeedOnClickListener {
     }
 
     override fun onItemClick(url: String) {
+        val builder = CustomTabsIntent.Builder()
+        val customTabsIntent = builder.build()
+//        val anotherCustomTab = CustomTabsIntent.Builder().build()
+
+//        val requestCode = 100
+//        val intent = anotherCustomTab.intent
+//        intent.setData(Uri.parse(url))
+        customTabsIntent.launchUrl(requireContext(), Uri.parse(url))
     }
 
     private fun feedObserver(result: Result<List<FeedItem>>?) {
