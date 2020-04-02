@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Online Health Care</string>
+    <string name="app_name">CovTracker</string>
     <string name="com.crashlytics.android.build_id" translatable="false">223205775</string>
 
     <string name="total_confirmed">Confirmed Cases:</string>

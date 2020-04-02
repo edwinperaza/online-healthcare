@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.moriahdp.app.ui.activity.MainActivity">
+    tools:context="com.moriahdp.covtracker.ui.activity.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/base_container"
